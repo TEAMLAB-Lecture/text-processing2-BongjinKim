@@ -1,7 +1,7 @@
 #######################
 # Test Processing II  #
 #######################
-
+import re
 
 def digits_to_words(input_string):
     """
@@ -28,9 +28,11 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
-    return digit_string
-
+    p = re.compile("\d*")
+    arr_num = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    digit_string = [arr_num[int(c)] for c in "".join(p.findall(input_string))]
+    return " ".join(digit_string)
+#print(digits_to_words(""))
 
 """
 컴퓨터 프로그래밍에 많은 명명 규칙이 있지만, 두 규칙이 특히 흔히 쓰입니다. 
@@ -64,5 +66,8 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
-    return camelcase_str
+
+    camelcase_str = [ele.capitalize() for ele in underscore_str.split("_") if ele] 
+    camelcase_str[0] = camelcase_str[0].lower()
+    return "".join(camelcase_str) if len(camelcase_str) > 1 else underscore_str
+
